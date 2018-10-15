@@ -44,9 +44,9 @@ Dcl-S price   Packed(11:2);
 Dcl-S text    Char(50);
 Dcl-S country Char(50);
 
-price   = json_GetNum(pJson: '/price');
-text    = json_GetStr(pJson: '/text');
-country = json_GetStr(pJson: '/anObject/country': 'N/A');
+price   = json_GetNum(jsonHandle: '/price');
+text    = json_GetStr(jsonHandle: '/text');
+country = json_GetStr(jsonHandle: '/anObject/country': 'N/A');
 ```
 
 You can see a third parameter on `json_GetStr`, which is the default return value if the item in the document cannot be found.
