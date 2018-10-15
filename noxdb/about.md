@@ -10,3 +10,8 @@ noxDB is a library to generate/parse XML and JSON - but not only work with docum
 4. Working with objects
 5. Generating from relational data
 6. Generating with binding parameters
+
+### API Documentation
+
+* [JSON APIs](/noxdb/docs/json) ([SQL](/noxdb/docs/jsonsql))
+* [XML APIs](/noxdb/docs/xml)

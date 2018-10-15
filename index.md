@@ -2,5 +2,5 @@
 
 Coming soon:
 
-* noxDB tutorials
-* ILEastic tutorials
+* [noxDB tutorials](/noxdb/about)
+* [ILEastic tutorials](/ileastic/about)
