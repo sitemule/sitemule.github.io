@@ -39,7 +39,7 @@ You can use `json_GetValuePtr` to determine whether the current item in the list
 ```
 Document = json_ParseString('{ a: 1, b : { c : 2 , d : 3 }}');
 
-list = json_setRecursiveIterator(Document);
+list = json_SetIterator(Document);
 dow json_ForEach(list);
   name  = json_GetNameAsPath(list.this:'.');
   value = json_GetValue (list.this);
