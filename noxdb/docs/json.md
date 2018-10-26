@@ -14,6 +14,8 @@ This page documents the JSON functionality available in noxDB. Header file: `hea
 * json_LocateOrCreate
 * json_NewObject
 * json_MoveObjectInto
+* json_GetLength
+* json_GetChild
 * json_NewArray
 * json_ArrayPush
 * json_GetStr
@@ -283,6 +285,34 @@ json_setStr(pB : 'bValue' : 'Value for b');
 
 json_MoveObjectInto(pObj : 'bObject': pB);
 ```
+
+---
+
+## json_GetLength
+
+```
+Int(10) json_GetLength( Pointer node )
+```
+
+#### Parameters
+
+1. Existing JSON node which is an array.
+
+Returns count of elements in provided array.
+
+---
+
+## json_GetChild
+
+```
+Pointer json_GetChild( Pointer node )
+```
+
+#### Parameters
+
+1. Existing JSON node which is an array or object.
+
+Returns Pointer which is the first item in the array or first node in the object
 
 ---
 
