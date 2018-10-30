@@ -4,3 +4,4 @@ Coming soon:
 
 * [noxDB tutorials](/noxdb/about)
 * [ILEastic tutorials](/ileastic/about)
+* [ILEusion documentation](/ileusion/about)
