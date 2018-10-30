@@ -57,12 +57,14 @@ The request body has three main attributes:
 * `library` - string, name of library
 * `object` - string, name of program (or service program if using `function` attribute)
 * `function` - string, name of function (**optional**, only required when calling export functions in a service program)
+
 * `result` - object defining the return type of the function (**optional**, only needed if return type is not void)
   * `type` - string, type of parameter: `int`, `uns`, `float`, `char`, `bool`, `ind`
   * `length` - number, should match length of type defined in the calling application (uses RPG sizes)
   * `arraysize` - number, size of array being returned (**optional**, only needed if functions returns an array)
+
 * `args` - array of objects defining the parameters and their types:
-  * `value` - string|number|bool
+  * `value` - string/number/bool
   * `values` - array, used if calling application has an array parameter. **Not to be used** at the same time as the `value` attribute
   * `type` - string, type of parameter: `int`, `uns`, `float`, `char`, `bool`, `ind`
   * `length` - number, should match length of type defined in the calling application (uses RPG sizes)
@@ -183,7 +185,7 @@ End-Pi;
 * `library` - string, name of library
 * `object` - string, name of program
 * `waittime` - number, `0` by default (**optional**)
-* `key` - string|number, key of the item to be popped (**optional**)
+* `key` - string/number, key of the item to be popped (**optional**)
 * `keyorder` - key comparison, `EQ` by default (**optional**)
 
 **Example request**
