@@ -20,7 +20,7 @@ It can
 git clone git@github.com:sitemule/ILEastic.git
 ```
 
-**Two**. Compile
+**Two**. Compile (using GNU Make, available via `yum`)
 
 ```
 cd ILEastic
