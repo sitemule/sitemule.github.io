@@ -29,6 +29,7 @@ APIs available:
 
 ### `/sql`
 
+<details>
 `/sql` allows you to run select statements.
 
 **Example input**
@@ -44,11 +45,13 @@ APIs available:
 ```
 //Response here
 ```
+</details>
 
 ---
 
 ### `/call`
 
+<details>
 `/call` allows you to call an ILE application or export function. The result is an array of values which is the values passed by reference from the application. Currently only program calls are supported.
 
 **Request body**
@@ -86,7 +89,7 @@ End-Pi;
 	"object": "FAK100",
 	"library": "BARRY",
 	"args": 
-  [
+ 	[
 		{
 			"value": "Text here",
 			"type": "char",
@@ -143,11 +146,13 @@ End-Pi;
 	]
 }
 ```
+</details>
 
 ---
 
 ### `/dq/send`
 
+<details>
 `/dq/send` can be used to push items into a data queue.
 
 **Request body**
@@ -174,11 +179,13 @@ End-Pi;
   "success": true
 }
 ```
+</details>
 
 ---
 
 ### `/dq/pop`
 
+<details>
 `/dq/pop` can be used to pop an item from a data queue.
 
 **Request body**
@@ -206,11 +213,13 @@ End-Pi;
   "data": "Hello world!"
 }
 ```
+</details>
 
 ---
 
 ### `/cl`
 
+<details>
 `/cl` can be used to run a CL command in the same job as the ILEusion server.
 
 **Request body**
@@ -232,3 +241,4 @@ End-Pi;
   "success": true
 }
 ```
+</details>
