@@ -328,6 +328,8 @@ Pointer json_NewArray( Pointer node )
 
 Returns array pointer.
 
+*Note*: The parameter is now obsolete. It is easy to use this API along side `json_MoveObjectInto`.
+
 ---
 
 ## json_ArrayPush
