@@ -23,6 +23,7 @@ APIs available:
 * `/call`
 * `/dq/send`
 * `/dq/pop`
+* `/cl`
 
 ---
 
@@ -203,5 +204,31 @@ End-Pi;
 {
   "success": true,
   "data": "Hello world!"
+}
+```
+
+---
+
+### `/cl`
+
+`/cl` can be used to run a CL command in the same job as the ILEusion server.
+
+**Request body**
+
+* `command` - the command contents.
+
+**Example request**
+
+```json
+{
+  "command": "ADDLIBLE SYSTOOLS"
+}
+```
+
+**Example response**
+
+```json
+{
+  "success": true
 }
 ```
