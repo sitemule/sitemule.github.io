@@ -30,6 +30,7 @@ APIs available:
 ### `/sql`
 
 <details>
+
 `/sql` allows you to run select statements.
 
 **Example input**
@@ -52,6 +53,7 @@ APIs available:
 ### `/call`
 
 <details>
+
 `/call` allows you to call an ILE application or export function. The result is an array of values which is the values passed by reference from the application. Currently only program calls are supported.
 
 **Request body**
@@ -153,6 +155,7 @@ End-Pi;
 ### `/dq/send`
 
 <details>
+
 `/dq/send` can be used to push items into a data queue.
 
 **Request body**
@@ -186,6 +189,7 @@ End-Pi;
 ### `/dq/pop`
 
 <details>
+
 `/dq/pop` can be used to pop an item from a data queue.
 
 **Request body**
@@ -220,6 +224,7 @@ End-Pi;
 ### `/cl`
 
 <details>
+
 `/cl` can be used to run a CL command in the same job as the ILEusion server.
 
 **Request body**
