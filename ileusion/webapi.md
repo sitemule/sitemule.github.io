@@ -19,6 +19,7 @@ All APIs accept and respond with JSON. All APIs will return an object with `succ
 
 APIs available:
 
+* `/transaction`
 * `/sql`
 * `/call`
 * `/dq/send`
@@ -27,6 +28,43 @@ APIs available:
 * `/qsh`
 
 ---
+
+### `/transaction`
+
+`/transaction` allows the ILEusion server to process multiple transaction in one request. Meaning you could call a program, insert into a data queue and call a CL command in a single API call.
+
+The body must be an array of objects, where the object is what matches the API you want to call (see the available API documentation) - but must also contain an `action` attribute which is the API it's going to use.
+
+**Example input**
+
+```json
+[  
+   {  
+      "action": "/dq/send",
+      "library": "BARRY",
+      "object": "TESTDQ",
+      "data": "This is my test!!"
+   },
+   {  
+      "action":"/cl",
+      "command": "addliliohls"
+   }
+]
+```
+
+**Example response**
+
+```json
+[  
+   {  
+      "success": true
+   },
+   {  
+      "success": false,
+      "message": "Error during execution of command."
+   }
+]
+```
 
 ### `/sql`
 
