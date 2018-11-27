@@ -17,4 +17,4 @@ It provides web services for:
 
 ILEusion exists to replace XMLSERVICE with a nicer API layer so it is easier to work with. There are currently libraries for
 
-* Node.js (ileusion_node)
+* Node.js ([ileusion_node](https://github.com/WorksOfBarry/ileusion_node))
