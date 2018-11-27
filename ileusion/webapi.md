@@ -24,6 +24,7 @@ APIs available:
 * `/dq/send`
 * `/dq/pop`
 * `/cl`
+* `/qsh`
 
 ---
 
@@ -230,5 +231,32 @@ End-Pi;
 ```json
 {
   "success": true
+}
+```
+
+---
+
+### `/qsh`
+
+`/qsh` can be used to run a QShell command in the same job as the ILEusion server.
+
+**Request body**
+
+* `command` - the command contents.
+
+**Example request**
+
+```json
+{
+  "command": "mkdir xxx"
+}
+```
+
+**Example response**
+
+```json
+{
+  "success": true,
+  "returned": 0
 }
 ```
