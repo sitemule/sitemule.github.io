@@ -109,6 +109,7 @@ The request body has three main attributes:
   * `values` - array, used if calling application has an array parameter. **Not to be used** at the same time as the `value` attribute
   * `type` - string, type of parameter: `int`, `uns`, `float`, `char`, `bool`, `ind`
   * `length` - number, should match length of type defined in the calling application (uses RPG sizes)
+  * `precision` - number, **Only to be used** with `packed` or `zoned` type.
 
 **Example request**
 
