@@ -161,6 +161,8 @@ Ind json_sqlExec( String sqlstatement : [Pointer jsonobject] )
 1. An SQL statement.
 2. JSON object with properties matching the parameter markers.
 
+Return `*ON` if an error had occured.
+
 #### Example
 
 ````
