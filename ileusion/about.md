@@ -1,12 +1,13 @@
 ## ILEusion
 
-ILEusion is a web server application whichs allows your IBM i reached from outside the OS over HTTP.
+ILEusion is an application whichs allows your IBM i reached from outside the OS over HTTP or Db2 stored procedure.
 
-It provides web services for:
+It provides services for:
 
-* Calling programs and service programm functions
-* Running SQL queries (currently only `select` is supported.)
+* Calling programs and service programm functions.
+* Running SQL queries.
 * Working with data areas.
+* Running commands (QSH, CL, etc)
 
 ### Documentation
 
