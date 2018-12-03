@@ -99,7 +99,7 @@ The request body has three main attributes:
 * `function` - string, name of function (**optional**, only required when calling export functions in a service program)
 
 * `result` - object defining the return type of the function (**optional**, only needed if return type is not void)
-  * `type` - string, type of parameter: `int`, `uns`, `float`, `char`, `bool`, `ind`, `packed`
+  * `type` - string, type of parameter: see *Acceptable types*
   * `length` - number, should match length of type defined in the calling application (uses RPG sizes)
   * `precision` - number, **Only to be used** with `packed` or `zoned` type.
   * `arraysize` - number, size of array being returned (**optional**, only needed if functions returns an array)
@@ -107,9 +107,11 @@ The request body has three main attributes:
 * `args` - array of objects defining the parameters and their types:
   * `value` - string/number/bool
   * `values` - array, used if calling application has an array parameter. **Not to be used** at the same time as the `value` attribute
-  * `type` - string, type of parameter: `int`, `uns`, `float`, `char`, `bool`, `ind`
+  * `type` - string, type of parameter: see *Acceptable types*
   * `length` - number, should match length of type defined in the calling application (uses RPG sizes)
   * `precision` - number, **Only to be used** with `packed` or `zoned` type.
+
+*Acceptable types*: `int`, `uns`, `float`, `char`, `bool`, `ind`, `packed`, `zoned`
 
 **Example request**
 
