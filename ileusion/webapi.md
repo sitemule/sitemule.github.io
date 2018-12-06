@@ -70,11 +70,26 @@ The body must be an array of objects, where the object is what matches the API y
 
 `/sql` allows you to run select statements.
 
+The request body has 1 required and 2 optional attributes:
+
+* `query` - **required** string, the SQL statement to be executed.
+* `parameters` - **optional** object, a keyed list of SQL parameters to be in place of the provided markers. (See example)
+* `mode` - **optional** number, `1` to return a result set (default), `2` to execute a statement other than `SELECT`.
+
 **Example input**
 
 ```json
 {
   "query": "select * from product where MANUID = 'SAMSUNG'"
+}
+```
+
+```json
+{
+  "query": "select * from product where MANUID = '$manu'",
+  "parameters": {
+    "manu": "SAMSUNG"
+  }
 }
 ```
 
