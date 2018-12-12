@@ -1,6 +1,6 @@
 # ILEusion API documentation
 
-## Starting ILEusion
+## Starting the ILEusion Server
 
 All APIs are enabled when the ILEusion server is started. You can start the server (or multiple servers) using the `STRILESRV` command after installation. The command also has optional parameters.
 
@@ -13,7 +13,13 @@ STRILESRV
 
 All APIs are run within the same job. That means the job will run under the user that ran `STRILESRV` and will have the same authorities when accessing objects. The server will also have the same library list as the job that started the server.
 
-## Web API documentation
+## Calling ILEusion through Db2
+
+You are also able to call ILEusion APIs through a Db2 stored procedure. For example, you can use a database library in your Node.js or PHP app and that would use the database to authenticate the user (and manage their authorities). Then you can use the database to call the ILEusion stored procedure to call any of the available APIs.
+
+*Not yet implementing.*
+
+## API documentation
 
 All APIs accept and respond with JSON. All APIs will return an object with `success: false` if it fails, along with `message`. Not all APIs return with `success: true`.
 
@@ -31,7 +37,7 @@ APIs available:
 
 ### `/transaction`
 
-`/transaction` allows the ILEusion server to process multiple transaction in one request. Meaning you could call a program, insert into a data queue and call a CL command in a single API call.
+`/transaction` allows ILEusion to process multiple transaction in one request. Meaning you could call a program, insert into a data queue and call a CL command in a single API call.
 
 The body must be an array of objects, where the object is what matches the API you want to call (see the available API documentation) - but must also contain an `action` attribute which is the API it's going to use.
 
