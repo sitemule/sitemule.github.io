@@ -40,7 +40,7 @@ SBMJOB CMD(CALL PGM(DEMO02)) JOB(ILEASTIC2) JOBQ(QSYSNOMAX) ALWMLTTHD(*YES)
 
 ### Pro tips
 
-* Check out the [documentation](https://github.com/sitemule/ILEastic/blob/master/docs/ileastic.md)
+* Check out the [documentation](http://iledocs.rpgnextgen.com/)
 * `il_getRequestResource(request)` to get the endpoint.
 * `il_getRequestMethod(request)` to get the HTTP method.
 * `il_getContent(request)` to get the request body.
