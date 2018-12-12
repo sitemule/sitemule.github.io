@@ -17,7 +17,7 @@ All APIs are run within the same job. That means the job will run under the user
 
 You are also able to call ILEusion APIs through a Db2 stored procedure. For example, you can use a database library in your Node.js or PHP app and that would use the database to authenticate the user (and manage their authorities). Then you can use the database to call the ILEusion stored procedure to call any of the available APIs.
 
-*Not yet implementing.*
+*Not yet implemented. [See relevant GitHub issue](https://github.com/sitemule/ILEusion/issues/10#issuecomment-443762416)*
 
 ## API documentation
 
