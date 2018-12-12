@@ -12,7 +12,7 @@ It provides services for:
 ### Documentation
 
 * [Installation](/ileusion/installation)
-* [Web API documentation](/ileusion/api)
+* [API documentation](/ileusion/api)
 
 ### Available libraries
 
