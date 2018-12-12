@@ -80,7 +80,11 @@ The request body has 1 required and 2 optional attributes:
 
 * `query` - **required** string, the SQL statement to be executed.
 * `parameters` - **optional** object, a keyed list of SQL parameters to be in place of the provided markers. (See example)
-* `mode` - **optional** number, `1` to return a result set (default), `2` to execute a statement other than `SELECT`.
+* `mode` - **optional** number:
+   * `1` - execute a select statement and get a result set (**default mode**)
+   * `2` - execute a statement with no result set returned
+   * `3` - insert into a table. `query` attribute to be used for table name and `parameters` to be used as a keyed list for the columns (column: value)
+   * `4` - update a row in a table. `query` attribute to be used for table name, `parameters` to be used as a keyed list for the columns (column: value) to be updated. A third `where` attribute to specify the where clause.
 
 **Example input**
 
@@ -99,10 +103,15 @@ The request body has 1 required and 2 optional attributes:
 }
 ```
 
-**Example response**: Will return an array objects, with the key of the objects being the column name.
-
-```
-//Response here
+```json
+{
+  "mode": 4,
+  "query": "product",
+  "parameters": {
+    "manu": "SAMSUNG"
+  },
+  "where": "prodno = 120"
+}
 ```
 
 ---
