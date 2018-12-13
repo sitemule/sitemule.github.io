@@ -17,7 +17,7 @@ It can
 **One**. Download
 
 ```
-git clone git@github.com:sitemule/ILEastic.git
+git clone https://github.com/sitemule/ILEastic.git
 ```
 
 **Two**. Compile (using GNU Make, available via `yum`)
