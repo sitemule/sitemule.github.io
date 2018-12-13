@@ -12,7 +12,7 @@ ILEusion depends on ILEastic and noxDB, so you will need to follow their install
 Then, follow these steps from a pase shell (over SSH, for example):
 
 ```
-git clone git@github.com:sitemule/ileusion.git
+git clone https://github.com/sitemule/ILEusion.git
 cd noxDB
 gmake
 ```
