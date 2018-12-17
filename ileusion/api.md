@@ -151,7 +151,7 @@ The request body has three main attributes:
   * `length` - number, should match length of type defined in the calling application (uses RPG sizes)
   * `precision` - number, **Only to be used** with `packed` or `zoned` type.
 
-*Acceptable types*: `int`, `uns`, `float`, `char`, `bool`, `ind`, `packed`, `zoned`
+*Acceptable types*: `int`, `uns`, `float`, `char`, `bool`, `ind`, `packed`, `zoned`, `struct`
 
 **Example request**
 
@@ -224,6 +224,46 @@ End-Pi;
 			"length": 10
 		}
 	]
+}
+```
+
+**Example request (struct)**
+
+```
+Dcl-Ds DSTest Qualified Template;
+  Name Char(20);
+  Age  Int(3);
+  Money Packed(11:2);
+End-Ds;
+```
+
+```json
+{
+        "library": "ILEUSION",
+        "object": "DS1",
+        "args": [
+            {
+                "type": "struct",
+                "value": [
+                    {
+                        "type": "char",
+                        "length": 20,
+                        "value": "Hello"
+                    },
+                    {
+                        "type": "int",
+                        "length": 3,
+                        "value": 11
+                    },
+                    {
+                        "type": "packed",
+                        "length": 11,
+                        "precision": 2,
+                        "value": 12.34
+                    }
+                ]
+            }
+        ]
 }
 ```
 
