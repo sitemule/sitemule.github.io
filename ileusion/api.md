@@ -235,6 +235,10 @@ Dcl-Ds DSTest Qualified Template;
   Age  Int(3);
   Money Packed(11:2);
 End-Ds;
+
+Dcl-Pi DS1;
+  pDS LikeDS(DSTest);
+End-Pi;
 ```
 
 ```json
