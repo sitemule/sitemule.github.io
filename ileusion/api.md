@@ -15,13 +15,13 @@ STRILESRV
 
 All APIs are run within the same job, but in seperate threads. 
 
-If `LOGIN` is enabled, when making a request to the ILEusion HTTP server you are required to pass the `Authorization` header with a `Basic` username and password. Do not send the username and password base64 encoded. ILEusion does not support base64 decoding right now (because UTF8 base64 -> EBCDIC is hard). This does mean, that requests will run under the supplied user profile - it will use that users authorities, not the users that is running the ILEusion server. It is recommend that you call the ILEusion via an SSL enabled proxy to secure the username and password.
+If `LOGIN` is enabled, when making a request to the ILEusion HTTP server you are required to pass the `Authorization` header with a `Basic` username and password (in base64). This does mean, that requests will run under the supplied user profile - it will use that users authorities, not the users that is running the ILEusion server. It is recommend that you call the ILEusion via an SSL enabled proxy to secure the username and password.
 
 ```
-Authorization: Basic myuserprf:mypassword
+Authorization: Basic bXl1c2VycHJmOm15cGFzc3dvcmQ=
 ```
 
-If `LOGIN` is disabled, then it will use the user profile that started the ILEusion job.
+If `LOGIN` is disabled, then it will use the user profile that started the ILEusion job and no `Authorization` header is needed.
 
 ## Calling ILEusion through Db2
 
