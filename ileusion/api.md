@@ -82,6 +82,8 @@ The body must be an array of objects, where the object is what matches the API y
 ]
 ```
 
+---
+
 ### `/sql`
 
 `/sql` allows you to run select statements.
@@ -128,7 +130,7 @@ The request body has 1 required and 2 optional attributes:
 
 ### `/call`
 
-`/call` allows you to call an ILE application or export function. The result is an array of values which is the values passed by reference from the application. Currently only program calls are supported.
+`/call` allows you to call an ILE application or service program function. The result is an array of values which is the values passed by reference from the application. Currently only program calls are supported.
 
 **Request body**
 
