@@ -143,7 +143,8 @@ The request body has three main attributes:
 * `result` - object defining the return type of the function (**optional**, only needed if return type is not void)
   * `type` - string, type of parameter: see *Acceptable types*
   * `length` - number, should match length of type defined in the calling application (uses RPG sizes)
-  * `precision` - number, **Only to be used** with `packed` or `zoned` type.
+  * `precision` - number, **Only to be used** with `packed` or `zoned` types.
+  * `value` - number, **Only to be used** with `struct` type.
   * `arraysize` - number, size of array being returned (**optional**, only needed if functions returns an array)
 
 * `args` - array of objects defining the parameters and their types:
@@ -154,6 +155,8 @@ The request body has three main attributes:
   * `precision` - number, **Only to be used** with `packed` or `zoned` type.
 
 *Acceptable types*: `int`, `uns`, `float`, `char`, `bool`, `ind`, `packed`, `zoned`, `struct`
+
+*Service program functions can be called, but you can only pass parameters in and out. The return value is not being handled yet ([23](https://github.com/sitemule/ILEusion/issues/23)). You can also only call each service program once per transaction ([24](https://github.com/sitemule/ILEusion/issues/24)).*
 
 **Example request**
 
