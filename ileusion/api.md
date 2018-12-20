@@ -144,15 +144,15 @@ The request body has three main attributes:
   * `type` - string, type of parameter: see *Acceptable types*
   * `length` - number, should match length of type defined in the calling application (uses RPG sizes)
   * `precision` - number, **Only to be used** with `packed` or `zoned` types.
-  * `value` - number, **Only to be used** with `struct` type.
+  * `value` - array of args, **Only to be used** with `struct` type.
   * `arraysize` - number, size of array being returned (**optional**, only needed if functions returns an array)
 
 * `args` - array of objects defining the parameters and their types:
-  * `value` - string/number/bool
-  * `values` - array, used if calling application has an array parameter. **Not to be used** at the same time as the `value` attribute
   * `type` - string, type of parameter: see *Acceptable types*
   * `length` - number, should match length of type defined in the calling application (uses RPG sizes)
   * `precision` - number, **Only to be used** with `packed` or `zoned` type.
+  * `value` - string/number/bool
+  * `values` - array, used if calling application has an array parameter. **Not to be used** at the same time as the `value` attribute
 
 *Acceptable types*: `int`, `uns`, `float`, `char`, `bool`, `ind`, `packed`, `zoned`, `struct`
 
