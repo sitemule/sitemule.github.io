@@ -79,4 +79,4 @@ json_sqlDisconnect();
 
 ---
 
-There are plenty more SQL APIs available in noxDB and you can find the [documentation for them here](/noxdb/docs/v1.0/json).
+There are plenty more SQL APIs available in noxDB and you can find the [documentation for them here](https://github.com/sitemule/noxDB/tree/master/examples).
