@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Headers - ILEvator</title>
+    <meta name="description" content="HTTP client for the ILE environment">
+    <meta name="author" content="Mihael Schmidt">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="index.html">ILEvator</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item '><a href="installation.html">Installation</a></li>
+<li class='Nav__item '><a href="getting_started.html">Getting Started</a></li>
+<li class='Nav__item '><a href="low_level_vs_porcelain.html">Low-Level API vs Porcelain API</a></li>
+<li class='Nav__item '><a href="forms.html">Forms</a></li>
+<li class='Nav__item '><a href="multipart.html">Multipart</a></li>
+<li class='Nav__item Nav__item--active'><a href="headers.html">Headers</a></li>
+<li class='Nav__item '><a href="encoding.html">Encoding</a></li>
+<li class='Nav__item '><a href="request_handler.html">Request Handler</a></li>
+<li class='Nav__item '><a href="https.html">HTTPS</a></li>
+<li class='Nav__item '><a href="http_tunneling.html">HTTP Tunneling</a></li>
+<li class='Nav__item '><a href="debug_mode.html">Debug Mode</a></li>
+<li class='Nav__item '><a href="examples.html">Examples</a></li>
+<li class='Nav__item '><a href="faq.html">Frequently Asked Questions</a></li></ul>
+            <div class="Links">
+                                    <hr/>
+                                            <a href="https://iledocs.rpgnextgen.com" target="_blank"  rel="noopener noreferrer">API Docs</a>
+                        <br />
+                                            <a href="https://sitemule.github.io" target="_blank"  rel="noopener noreferrer">Sitemule</a>
+                        <br />
+                                                </div>
+
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="headers.html">Headers</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <p>ILEvator sets the minimal HTTP headers needed for the request. But you can add additional custom
+headers as needed. Headers can also be set multiple times. Generally the last one wins (though
+some headers are only allowed once like <code>Host</code>, <code>Content-Length</code>, <code>Upgrade</code> or <code>Authorization</code>).</p>
+<h2><a id="porcelain-api" href="#porcelain-api" class="Permalink" aria-hidden="true" title="Permalink">#</a>Porcelain API</h2>
+<p>When using the porcelain API like <code>iv_get</code> or <code>iv_post</code> you can add additional headers by passing
+a list of headers as a parameter to to procedure call.</p>
+<pre><code>dcl-s headers pointer;
+
+headers = iv_buildList(
+    'accept-language' : 'dk,de;q=0.5' :
+    'authentication' : 'Bearer my_token'
+);
+
+string = iv_get('http://localhost' : IV_MEDIA_TYPE_JSON : headers);
+</code></pre>
+<p>The headers list is built dynamically and as such allocates memory dynamically. This memory must
+be freed manually by calling <code>iv_freeList</code>.</p>
+<pre><code>iv_freeList(headers);
+</code></pre>
+<h2><a id="low-level-api" href="#low-level-api" class="Permalink" aria-hidden="true" title="Permalink">#</a>Low Level API</h2>
+<p>The low level API supports setting HTTP headers global for that HTTP client instance. Those
+HTTP headers will be added to each HTTP request made with this client instance, see
+<code>iv_addHeader</code> and <code>iv_addHeaders</code>.</p>
+<pre><code>dcl-proc main;
+    dcl-s httpClient pointer;
+    dcl-s buffer varchar(65000:4) ccsid(1208);
+    dcl-s headers pointer;
+    
+    headers = iv_buildList(
+        'accept-language' : 'dk,de;q=0.5' :
+        'authentication'  : 'Bearer my_token'
+    );
+    
+    httpClient = iv_newHttpClient();
+    iv_addHeaders(httpClient : headers);
+    iv_setResponseDataBuffer(httpClient : %addr(buffer) : %size(buffer) : IV_VARCHAR4 : IV_CCSID_UTF8);
+
+    iv_execute(httpClient : 'GET' : 'http://localhost');
+    if (iv_getStatus(httpClient) = IV_HTTP_OK);
+        // everything ok
+    else;
+        // not ok
+    endif;
+
+    on-exit;
+        iv_free(httpClient);
+        iv_freeList(headers);
+end-proc;
+</code></pre>
+<p>Headers can also be passed to the <code>iv_execute</code> procedure call. These headers will be appended
+after the headers previously set on the HTTP client instance.</p>
+<pre><code>dcl-proc main;
+    dcl-s httpClient pointer;
+    dcl-s buffer varchar(65000:4) ccsid(1208);
+    dcl-s headers pointer;
+    
+    headers = iv_buildList(
+        'accept-language' : 'dk,de;q=0.5' :
+        'authentication'  : 'Bearer my_token'
+    );
+    
+    httpClient = iv_newHttpClient();
+    iv_setResponseDataBuffer(httpClient : %addr(buffer) : %size(buffer) : IV_VARCHAR4 : IV_CCSID_UTF8);
+
+    iv_execute(httpClient : 'GET' : 'http://localhost' : headers);
+    if (iv_getStatus(httpClient) = IV_HTTP_OK);
+        // everything ok
+    else;
+        // not ok
+    endif;
+
+    on-exit;
+        iv_free(httpClient);
+        iv_freeList(headers);
+end-proc;
+</code></pre>
+<p>Note: The headers list is built dynamically and as such allocates memory dynamically. This memory
+must be freed manually by calling <code>iv_freeList</code>.</p>
+<h2><a id="dynamic-header-list" href="#dynamic-header-list" class="Permalink" aria-hidden="true" title="Permalink">#</a>Dynamic Header List</h2>
+<p>The list can be created with <code>iv_buildList</code>. You can create an empty list or fill the list with
+initial values. The list is not immutable. You can add values to the list by calling
+<code>iv_addHeaderToList</code>.</p>
+<pre><code>    dcl-s headers pointer;
+    
+    headers = iv_buildList();
+    iv_addHeaderToList(headers : 'accept-language' : 'dk,de;q=0.5');
+    iv_addHeaderToList(headers : 'authentication' : 'Bearer my_token');
+
+    string = iv_get('http://localhost' : IV_MEDIA_TYPE_JSON : headers);
+
+    iv_freeList(headers);
+end-proc;
+</code></pre>
+<h2><a id="request-handler" href="#request-handler" class="Permalink" aria-hidden="true" title="Permalink">#</a>Request Handler</h2>
+<p>You can also hook yourself into the flow of a request and modify the request, f. e. add a header.
+This can be done with a request handler. The handler is implemented as a data structure with a
+subfield <code>processRequest</code> which contains the pointer to the function which will be called by
+ILEvator to intercept and process the request.</p>
+<pre><code>dcl-ds requestHandler_t qualified template;
+    processRequest pointer(*proc);
+end-ds;
+</code></pre>
+<p>The process procedure has a predefined procedure interface which needs to be implemented.</p>
+<pre><code>dcl-pi *n;
+    handler pointer value;
+    request pointer value;
+end-pi;
+</code></pre>
+<p>So a procedure to add a header could look like this:</p>
+<pre><code>dcl-proc addCustomHeader export;
+    dcl-pi *n;
+        handler pointer value;
+        request pointer value;
+    end-pi;
+
+    dcl-ds requestHandler likeds(requestHandler_t) based(handler);
+
+    iv_request_addHeader(request : 'X-Custom-Header' : 'Value 123');
+end-proc;
+</code></pre>
+<p>Inside the process procedure you can use the request API of ILEvator to modify the request before
+it is sent to the server.</p>
+<p>Last but not least you need to set the pointer to your process procedure in the handler data
+structure.</p>
+<pre><code>dcl-ds requestHandler likeds(requestHandler_t) inz;
+
+requestHandler.processRequest = %paddr(addCustomHeader);
+</code></pre>
+<p>And before you are making your first call you need to register the request handler at the HTTP
+client instance.</p>
+<pre><code>iv_setRequestHandler(httpClient : %addr(requestHandler));
+</code></pre>
+<p>Now on each request <code>addCustomHeader</code> will be called and each request will have the HTTP header
+<code>X-Custom-Header</code>.</p>
+    </div>
+
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="themes/daux/js/main.mjs"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': ''})
+    </script>
+</body>
+</html>
