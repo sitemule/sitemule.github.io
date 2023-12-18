@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Installation - ILEvator</title>
+    <meta name="description" content="HTTP client for the ILE environment">
+    <meta name="author" content="Mihael Schmidt">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="index.html">ILEvator</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item Nav__item--active'><a href="installation.html">Installation</a></li>
+<li class='Nav__item '><a href="getting_started.html">Getting Started</a></li>
+<li class='Nav__item '><a href="low_level_vs_porcelain.html">Low-Level API vs Porcelain API</a></li>
+<li class='Nav__item '><a href="forms.html">Forms</a></li>
+<li class='Nav__item '><a href="multipart.html">Multipart</a></li>
+<li class='Nav__item '><a href="headers.html">Headers</a></li>
+<li class='Nav__item '><a href="encoding.html">Encoding</a></li>
+<li class='Nav__item '><a href="request_handler.html">Request Handler</a></li>
+<li class='Nav__item '><a href="https.html">HTTPS</a></li>
+<li class='Nav__item '><a href="http_tunneling.html">HTTP Tunneling</a></li>
+<li class='Nav__item '><a href="debug_mode.html">Debug Mode</a></li>
+<li class='Nav__item '><a href="examples.html">Examples</a></li>
+<li class='Nav__item '><a href="faq.html">Frequently Asked Questions</a></li></ul>
+            <div class="Links">
+                                    <hr/>
+                                            <a href="https://iledocs.rpgnextgen.com" target="_blank"  rel="noopener noreferrer">API Docs</a>
+                        <br />
+                                            <a href="https://sitemule.github.io" target="_blank"  rel="noopener noreferrer">Sitemule</a>
+                        <br />
+                                                </div>
+
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="installation.html">Installation</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <p>ILEvator can be installed in various ways with more or less effort depending on the choice.</p>
+<h2><a id="from-source" href="#from-source" class="Permalink" aria-hidden="true" title="Permalink">#</a>From Source</h2>
+<p>The prerequisites for building ILEvator from source are at least IBM i OS release 7.3, access to
+the IFS of your IBM i server, ILE C and RPG compiler and <code>gmake</code>.</p>
+<p><code>gmake</code> can be installed via <a href="https://ibmi-oss-docs.readthedocs.io/en/latest/yum/README.html#installing-additional-software" class="Link--external" rel="noopener noreferrer">yum</a>.</p>
+<p>If all prerequisites are met you can either download or clone the
+<a href="https://github.com/sitemule/ILEvator" class="Link--external" rel="noopener noreferrer">Git repository</a> to your IBM i server.</p>
+<p>You start building the project just be executing <code>gmake</code>. By default the library <code>ILEVATOR</code> will
+be created and all objects will be placed in that library.</p>
+<h3><a id="build-options" href="#build-options" class="Permalink" aria-hidden="true" title="Permalink">#</a>Build Options</h3>
+<p>You can change the target library by passing the parameter <code>BIN_LIB</code> to the <code>gmake</code> command.</p>
+<pre><code>gmake BIN_LIB=MY_IV_LIB
+</code></pre>
+<p>By default the project will be built for the current release of the system. You can specify the
+target release version by passing the parameter <code>TARGET_RLS</code> to the <code>gmake</code> command.</p>
+<pre><code>gmake TARGET_RLS=V7R3M0
+</code></pre>
+<p>No compile listing will be output to the console during the build. To get a compile listing you
+need to pass the parameter <code>OUTPUT</code> to the <code>gmake</code> command.</p>
+<pre><code>gmake OUTPUT=*PRINT
+</code></pre>
+<p>If the module and service program needs to be rebuilt you can pass the target <code>ext</code> (for building
+all external dependencies) and <code>compile</code> to the <code>gmake</code> command.</p>
+<pre><code>gmake ext compile
+</code></pre>
+<p>Single modules can be compiled by passing the module file name to the <code>gmake</code> command.</p>
+<pre><code>gmake request.rpgmod
+</code></pre>
+<p>For just building the service program execute the target <code>ilevator.srvpgm</code>.</p>
+<h2><a id="ipkg" href="#ipkg" class="Permalink" aria-hidden="true" title="Permalink">#</a>iPKG</h2>
+<p>But you don’t need to build the service program by yourself. There is already a prepackaged
+version of ILEvator available at the iPKG RPM repository at <a href="https://repo.rpgnextgen.com" class="Link--external" rel="noopener noreferrer">https://repo.rpgnextgen.com</a>.</p>
+<p>You just need to download the [iPKG client] and follow the instructions at <a href="https://repo.rpgnextgen.com" class="Link--external" rel="noopener noreferrer">https://repo.rpgnextgen.com</a>.</p>
+<p>First create the library to you want to install ILEvator into. Just execute the <code>install</code> command for
+installing ILEvator.</p>
+<pre><code>ipkg install ilevator
+</code></pre>
+<p>This will install ILEvator in the default library <code>IPKG</code>. To specify another library just add the
+parameter <code>IPKGLIB</code>.</p>
+<pre><code>ipkg install ilevator ipkglib(MY_IV_LIB)
+</code></pre>
+<p>The copybooks can also be installed with iPKG.</p>
+<pre><code>ipkg install 'ilevator-devel'
+</code></pre>
+<p>The copybooks are packaged as stream files. By default the install command will try to install
+them in <code>/usr/local/include</code> in the IFS. You can change the target location by passing the location
+as a parameter.</p>
+<pre><code>ipkg install 'ilevator-devel' loc('/home/mihael/include')
+</code></pre>
+    </div>
+
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="themes/daux/js/main.mjs"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': ''})
+    </script>
+</body>
+</html>

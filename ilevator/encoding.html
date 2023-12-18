@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Encoding - ILEvator</title>
+    <meta name="description" content="HTTP client for the ILE environment">
+    <meta name="author" content="Mihael Schmidt">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="index.html">ILEvator</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item '><a href="installation.html">Installation</a></li>
+<li class='Nav__item '><a href="getting_started.html">Getting Started</a></li>
+<li class='Nav__item '><a href="low_level_vs_porcelain.html">Low-Level API vs Porcelain API</a></li>
+<li class='Nav__item '><a href="forms.html">Forms</a></li>
+<li class='Nav__item '><a href="multipart.html">Multipart</a></li>
+<li class='Nav__item '><a href="headers.html">Headers</a></li>
+<li class='Nav__item Nav__item--active'><a href="encoding.html">Encoding</a></li>
+<li class='Nav__item '><a href="request_handler.html">Request Handler</a></li>
+<li class='Nav__item '><a href="https.html">HTTPS</a></li>
+<li class='Nav__item '><a href="http_tunneling.html">HTTP Tunneling</a></li>
+<li class='Nav__item '><a href="debug_mode.html">Debug Mode</a></li>
+<li class='Nav__item '><a href="examples.html">Examples</a></li>
+<li class='Nav__item '><a href="faq.html">Frequently Asked Questions</a></li></ul>
+            <div class="Links">
+                                    <hr/>
+                                            <a href="https://iledocs.rpgnextgen.com" target="_blank"  rel="noopener noreferrer">API Docs</a>
+                        <br />
+                                            <a href="https://sitemule.github.io" target="_blank"  rel="noopener noreferrer">Sitemule</a>
+                        <br />
+                                                </div>
+
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="encoding.html">Encoding</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <p>Encoding plays an important role in the world wide web as we no longer are only on our own server
+but are communicating with different servers which may be using the same or a different encoding
+as we are.</p>
+<h2><a id="mime-types" href="#mime-types" class="Permalink" aria-hidden="true" title="Permalink">#</a>MIME Types</h2>
+<p><a href="https://en.wikipedia.org/wiki/MIME" class="Link--external" rel="noopener noreferrer">MIME</a> stands for <em>Multipurpose Internet Mail Extensions</em> and
+was originally designed and developed for email communication (mainly SMTP) but has also founds
+its way into other communication protocols like HTTP.</p>
+<p>In the context of HTTP the MIME type indicates what the format and structure of the message body
+is. But in case of vendor or personal specific MIME types it can also give you more detailed
+information about the message body.</p>
+<p>Note: The terms media type and MIME type are (mostly) interchangeable in the context of HTTP.</p>
+<h3><a id="examples" href="#examples" class="Permalink" aria-hidden="true" title="Permalink">#</a>Examples</h3>
+<p><code>text/plain</code> : This is just text and by default the characters set used is US-ASCII.</p>
+<p><code>application/xml</code> : This is XML and the encoding is specified in the XML itself.</p>
+<p><code>application/json</code> : This is JSON. JSON by default is encoded in UTF-8.</p>
+<p><code>application/vnd.rpgnextgen.blog</code> : The content is a blog entry from RPG Next Gen. But we have no idea what the format is like or the encoding.</p>
+<p><code>application/prs.rpgnextgen.blog+json</code> : This is better as we now know what is passed as the message body and in what format.</p>
+<p><code>application/prs.rpgnextgen.blog+json+v1</code> : This defines the content of the message pretty well. It is a blog entry from RPG Next Gen in the JSON format and the structure of the JSON is in version 1.</p>
+<p>Depending on the content and the MIME type it might be necessary to state the encoding of the content.</p>
+<p><code>text/plain; charset=UTF-8</code> : In this case the text is not in US-ASCII but in UTF-8 and may contain symbols not available in US-ASCII.</p>
+<h2><a id="content-type" href="#content-type" class="Permalink" aria-hidden="true" title="Permalink">#</a>Content Type</h2>
+<p>If data is sent to the server (f. e. on POST, PUT, PATCH requests) the HTTP header <code>Content-Type</code>
+should be set accordingly. HTTP headers can be set for all requests made by the HTTP client by
+using <code>iv_addHeader</code> and <code>iv_addHeaders</code>. If a HTTP header should only be used in a single request
+then a list of headers can be passed as an additional parameter.</p>
+<p>The porcelain API provides a separate parameter for passing the <code>Content-Type</code> HTTP header value.</p>
+<p>The <code>Content-Type</code> HTTP header only <em>declares</em> what the content is expected to be. It doesn’t not
+acutally converts any data to the corresponding MIME type or changes the data to the declared
+encoding/charset.</p>
+<p>It acts like a label on a packages. It states what to expect inside the package but the real
+content may differ from the label.</p>
+<h2><a id="message-body-data-translation" href="#message-body-data-translation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Message Body Data Translation</h2>
+<p>When using <code>iv_execute</code> the data is provided by passing the variable to <code>iv_setRequestDataBuffer</code>
+and specifying the CCSID on the last parameter. The data will automatically be converted to the
+CCSID which corresponds to the <code>Content-Type</code> used on the request. If no CCSID could be mapped
+to the used <code>Content-Type</code> the data will be converted to UTF-8.</p>
+<p>The porcelain API only accepts data in UTF-8.</p>
+<p>When receiving data the data is put into the variable provided by calling <code>iv_setResponseDataBuffer</code>.
+Currently there is no extra translation of the data. The data from the message response is put into
+the data buffer as is.</p>
+    </div>
+
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="themes/daux/js/main.mjs"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': ''})
+    </script>
+</body>
+</html>
