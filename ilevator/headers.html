@@ -65,6 +65,7 @@
 <li class='Nav__item '><a href="installation.html">Installation</a></li>
 <li class='Nav__item '><a href="getting_started.html">Getting Started</a></li>
 <li class='Nav__item '><a href="low_level_vs_porcelain.html">Low-Level API vs Porcelain API</a></li>
+<li class='Nav__item '><a href="consecutive_requests.html">Consecutive Requests</a></li>
 <li class='Nav__item '><a href="forms.html">Forms</a></li>
 <li class='Nav__item '><a href="multipart.html">Multipart</a></li>
 <li class='Nav__item Nav__item--active'><a href="headers.html">Headers</a></li>
@@ -72,6 +73,7 @@
 <li class='Nav__item '><a href="request_handler.html">Request Handler</a></li>
 <li class='Nav__item '><a href="https.html">HTTPS</a></li>
 <li class='Nav__item '><a href="http_tunneling.html">HTTP Tunneling</a></li>
+<li class='Nav__item '><a href="websocket.html">WebSocket</a></li>
 <li class='Nav__item '><a href="debug_mode.html">Debug Mode</a></li>
 <li class='Nav__item '><a href="examples.html">Examples</a></li>
 <li class='Nav__item '><a href="faq.html">Frequently Asked Questions</a></li></ul>
@@ -238,6 +240,13 @@ client instance.</p>
 </code></pre>
 <p>Now on each request <code>addCustomHeader</code> will be called and each request will have the HTTP header
 <code>X-Custom-Header</code>.</p>
+<h2><a id="non-ascii-characters" href="#non-ascii-characters" class="Permalink" aria-hidden="true" title="Permalink">#</a>Non-ASCII Characters</h2>
+<p>Historically characters from the ISO-8859-1 character set were also allowed in HTTP header values
+but that is a thing of the past. Servers, frameworks and software libraries will expect only ASCII
+characters in HTTP header keys and values. So as a general rule only ASCII characters should be used.</p>
+<p>In case non-ASCII characters need to be passed as a header value the sender and the receiver will
+have to encode/decode them manually. Base64 and MIME encoding can be used for these cases. ILEvator
+provides procedures for both, <code>iv_encode_mime</code> and <code>iv_encode_base64</code> / <code>iv_encode_base64_buffer</code>.</p>
     </div>
 
     </article>

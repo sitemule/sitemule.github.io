@@ -65,6 +65,7 @@
 <li class='Nav__item '><a href="installation.html">Installation</a></li>
 <li class='Nav__item '><a href="getting_started.html">Getting Started</a></li>
 <li class='Nav__item '><a href="low_level_vs_porcelain.html">Low-Level API vs Porcelain API</a></li>
+<li class='Nav__item '><a href="consecutive_requests.html">Consecutive Requests</a></li>
 <li class='Nav__item '><a href="forms.html">Forms</a></li>
 <li class='Nav__item '><a href="multipart.html">Multipart</a></li>
 <li class='Nav__item '><a href="headers.html">Headers</a></li>
@@ -72,6 +73,7 @@
 <li class='Nav__item '><a href="request_handler.html">Request Handler</a></li>
 <li class='Nav__item '><a href="https.html">HTTPS</a></li>
 <li class='Nav__item '><a href="http_tunneling.html">HTTP Tunneling</a></li>
+<li class='Nav__item '><a href="websocket.html">WebSocket</a></li>
 <li class='Nav__item Nav__item--active'><a href="debug_mode.html">Debug Mode</a></li>
 <li class='Nav__item '><a href="examples.html">Examples</a></li>
 <li class='Nav__item '><a href="faq.html">Frequently Asked Questions</a></li></ul>
@@ -115,6 +117,17 @@ unset. If you need to set/unset this on a regular basis then you can run it in a
 group. If you want to unset the debug mode just reclaim the activation group so that the service
 program will be loaded again on the next call and evaluates the environment variable for the debug
 mode again.</p>
+<h2><a id="communication-trace" href="#communication-trace" class="Permalink" aria-hidden="true" title="Permalink">#</a>Communication Trace</h2>
+<p>The communication between the client and the server can be traced separatedly from the debug
+information in a stream file. Tracing is enabled by calling the procedure <code>iv_setCommTrace</code> and
+passing the stream file for the trace as a parameter or by setting the environment variable
+<code>ILEVATOR_TRACE_STMF</code> to the stream file for the trace. This needs to be set before the first
+HTTP request with the created client.</p>
+<pre><code>ADDENVVAR ILEVATOR_TRACE_STMF '/home/my_user/trace_file.txt'
+</code></pre>
+<p>The file will be created if it does not exist (with the CCSID Latin 1 , 5348 = Windows, Latin 1
+with Euro, see <a href="https://www.ibm.com/docs/en/i/7.5?topic=information-ccsid-values-defined-i" class="Link--external" rel="noopener noreferrer">CCSID values defined on IBM i</a>). The trace data will be appended to the configured
+trace file.</p>
     </div>
 
     </article>
