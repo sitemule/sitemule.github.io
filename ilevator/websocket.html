@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>WebSocket - ILEvator</title>
+    <meta name="description" content="HTTP client for the ILE environment">
+    <meta name="author" content="Mihael Schmidt">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="index.html">ILEvator</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item '><a href="installation.html">Installation</a></li>
+<li class='Nav__item '><a href="getting_started.html">Getting Started</a></li>
+<li class='Nav__item '><a href="low_level_vs_porcelain.html">Low-Level API vs Porcelain API</a></li>
+<li class='Nav__item '><a href="consecutive_requests.html">Consecutive Requests</a></li>
+<li class='Nav__item '><a href="forms.html">Forms</a></li>
+<li class='Nav__item '><a href="multipart.html">Multipart</a></li>
+<li class='Nav__item '><a href="headers.html">Headers</a></li>
+<li class='Nav__item '><a href="encoding.html">Encoding</a></li>
+<li class='Nav__item '><a href="request_handler.html">Request Handler</a></li>
+<li class='Nav__item '><a href="https.html">HTTPS</a></li>
+<li class='Nav__item '><a href="http_tunneling.html">HTTP Tunneling</a></li>
+<li class='Nav__item Nav__item--active'><a href="websocket.html">WebSocket</a></li>
+<li class='Nav__item '><a href="debug_mode.html">Debug Mode</a></li>
+<li class='Nav__item '><a href="examples.html">Examples</a></li>
+<li class='Nav__item '><a href="faq.html">Frequently Asked Questions</a></li></ul>
+            <div class="Links">
+                                    <hr/>
+                                            <a href="https://iledocs.rpgnextgen.com" target="_blank"  rel="noopener noreferrer">API Docs</a>
+                        <br />
+                                            <a href="https://sitemule.github.io" target="_blank"  rel="noopener noreferrer">Sitemule</a>
+                        <br />
+                                                </div>
+
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="websocket.html">WebSocket</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <blockquote>
+<p>In a nutshell, WebSocket is a technology that enables bidirectional, full-duplex communication
+between client and server over a persistent, single-socket connection. The intent is to provide
+what is essentially an as-close-to-raw-as-possible TCP communication layer to web application
+developers while adding a few abstractions to eliminate certain friction that would otherwise
+exist concerning the way the web works. A WebSocket connection starts as an HTTP request/response
+handshake; beyond this handshake, WebSocket and HTTP are fundamentally different.
+— websocket.org</p>
+</blockquote>
+<p>ILEvator supports the WebSocket protocol as a first class citizen. Procedures, variables and
+constants with the prefix <code>iv_ws</code> are part of the WebSocket support.</p>
+<p>A WebSocket connection is initiated by doing a “handshake” which is a normal HTTP request with some
+corresponding HTTP headers to perform an “Upgrade”. From then on the WebSocket protocol is in effect.</p>
+<p>WebSocket is fundamentally different from HTTP. For a compact comparison of these two protocols
+visit <a href="https://websocket.org/guides/road-to-websockets/#comparing-websockets-and-http" class="Link--external" rel="noopener noreferrer">WebSocket.org</a>.
+This statement from WebSocket.org sums it up quite nicely:</p>
+<blockquote>
+<p>The intent is to provide what is essentially an as-close-to-raw-as-possible TCP communication layer …</p>
+</blockquote>
+<h2><a id="usage" href="#usage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Usage</h2>
+<p>First you need to create a new HTTP client instance and make a connect (Upgrade request) to the
+websocket server.</p>
+<pre><code>dcl-s client pointer; 
+
+client = iv_newHttpClient();
+
+if (iv_ws_connect(client : 'ws://localhost:35801/echo'));
+    // got a connection to the web socket server -&gt; feel free ;-)
+endif;
+</code></pre>
+<p>Some websocket servers are very picky and may deny a connection. ILEvator will output the reason
+to the job log when the debug mode has been enabled.</p>
+<p>After you got a connection to the websocket server you can send and receive messages. Remember
+that WebSocket is a bi-directional protocol. You don’t have to make a request to get data from
+the server. The server can send data to the client without the client making the first move
+(server push).</p>
+<p>If you are finished you need to close the connection by calling <code>iv_ws_disconnect</code>. This will
+close the socket connection and you can reuse the client instance.</p>
+<p>Note: The socket connection will be closed automatically when releasing all resources on calling
+<code>iv_free</code>.</p>
+<h2><a id="imperative-style" href="#imperative-style" class="Permalink" aria-hidden="true" title="Permalink">#</a>Imperative Style</h2>
+<p>ILEvator lets you be in full control when it comes to communicating with the websocket server.
+You decide when you want to receive messages and when you send messages.</p>
+<pre><code>dcl-s client pointer; 
+dcl-ds response likeds(iv_ws_message_t) inz;
+dcl-s msg char(50);
+
+client = iv_newHttpClient(); 
+
+if (iv_ws_connect(client : 'ws://localhost:35801/echo'));
+    iv_ws_sendText(client : 'Hello World!');
+    response = iv_ws_receiveText(client);
+    msg = %char(response.payload);
+    dsply msg;
+else;
+    dsply 'Connection failed.';
+endif;
+
+on-exit;
+    iv_free(client);
+</code></pre>
+<p>This style is best used when you (mainly) want to send data to the websocket server.</p>
+<h2><a id="reactive-style" href="#reactive-style" class="Permalink" aria-hidden="true" title="Permalink">#</a>Reactive Style</h2>
+<p>When your main goal is to react on messages sent from a websocket server you can more easily
+achieve this by using a more reactive style. You just provide a procedure which gets called
+every time the websocket server sends messages to your client.</p>
+<p>ILEvator supports this with the procedures <code>iv_ws_onMessage</code>and <code>iv_ws_endMessageReceiving</code>.</p>
+<p>Your procedure needs to implement the following procedure interface:</p>
+<pre><code>dcl-pi *n;
+    client pointer value;
+    userData pointer value;
+    message likeds(iv_ws_message_t);
+end-pi;
+</code></pre>
+<p><em>client</em> : This is your HTTP client instance. If you want to respond to the received message
+you will need this pointer.<br />
+<em>userData</em> : userData points to data you provided on the <code>iv_ws_onMessage</code> call. By passing
+this to your procedure you don’t need to have some static variables for data your
+procedure needs to access.<br />
+<em>message</em> : This is the message received from the websocket server.</p>
+<p>Note: <a href="https://www.rfc-editor.org/rfc/rfc6455.html#section-5.5" class="Link--external" rel="noopener noreferrer">Control frames</a> (messages) will
+be processed by ILEvator and will not be passed to your callback procedure.</p>
+<p>This example will count the number of text messages sent from the server till the server disconnects.</p>
+<pre><code>dcl-proc main;
+    dcl-s client pointer; 
+    dcl-s errorMessage varchar(256);
+    dcl-s userData int(10);
+    
+    client = iv_newHttpClient(); 
+    
+    iv_ws_connect(client : 'ws://localhost:35801/ws'); 
+    
+    iv_ws_onMessage(client : %paddr(callback) : %addr(userData));
+    dsply %trimr('Message count: ' + %char(userData));
+
+    on-exit;
+        iv_free(client);
+end-proc;
+
+dcl-proc callback;
+    dcl-pi *n;
+        client pointer value;
+        userData pointer value;
+        message likeds(iv_ws_message_t);
+    end-pi;
+    
+    dcl-s counter int(10) based(userData);
+    dcl-s msg char(50);
+
+    if (message.opcode = IV_WS_OPCODE_DATA_TEXT);
+        counter += 1;
+
+        msg = %char(message.payload);
+        dsply msg;
+    endif;
+end-proc;
+</code></pre>
+<h2><a id="tests" href="#tests" class="Permalink" aria-hidden="true" title="Permalink">#</a>Tests</h2>
+<p>The ILEvator project contains an integration test server which also integrates a web socket server,
+Eclipse <a href="https://eclipse-ee4j.github.io/tyrus/" class="Link--external" rel="noopener noreferrer">Tyrus</a>. This test server can be run on IBM i,
+see <a href="https://github.com/sitemule/ILEvator/blob/main/integrationtests/helidon/README.md" class="Link--external" rel="noopener noreferrer">Readme.md</a>.</p>
+<p>The test suite <a href="https://github.com/sitemule/ILEvator/blob/main/integrationtests/itwebsock.rpgmod" class="Link--external" rel="noopener noreferrer">ITWEBSOCK</a>
+contains all the test cases which can be easily run with <a href="https://github.com/Tools-400/irpgunit" class="Link--external" rel="noopener noreferrer">RPGUnit</a>
+by a Jenkins instance on IBM i.</p>
+<h2><a id="use-cases" href="#use-cases" class="Permalink" aria-hidden="true" title="Permalink">#</a>Use Cases</h2>
+<p>The WebSocket protocol is mostly used in the web environment to communicate streaming data between
+the browser and the server. But there are some cases where you want to stream data from a backend
+process to the server or receive streaming data from the server.</p>
+<p>Message streaming server which support the WebSocket protocol are</p>
+<ul>
+<li>
+<a href="https://kafka.apache.org" class="Link--external" rel="noopener noreferrer">Apache Kafka</a>
+</li>
+<li>
+<a href="https://pulsar.apache.org" class="Link--external" rel="noopener noreferrer">Apache Pulsar</a>
+</li>
+</ul>
+<p>Another use case is where ports in an environment are restricted to HTTP(S) but an application specific
+protocol (not HTTP) over sockets is needed.</p>
+    </div>
+
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="themes/daux/js/main.mjs"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': ''})
+    </script>
+</body>
+</html>
